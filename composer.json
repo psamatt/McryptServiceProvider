@@ -15,6 +15,6 @@
         "ext-mcrypt": "*"
     },
     "autoload": {
-        "psr-0": { "Psamatt\\Silex": "src" }
+        "psr-0": { "Psamatt\\Silex\\Provider": "src" }
     }
 }
