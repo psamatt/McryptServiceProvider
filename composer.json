@@ -1,0 +1,20 @@
+{
+    "name": "psamatt/mcrypt-service-provider",
+    "description": "A simple wrapper of mcrypt for Silex",
+    "keywords": ["silex", "mcrypt"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matt Goodwin",
+            "email": "matt.goodwin491@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "silex/silex": "1.*",
+        "ext-mcrypt": "*"
+    },
+    "autoload": {
+        "psr-0": { "Psamatt\\Silex": "src" }
+    }
+}
