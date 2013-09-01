@@ -45,6 +45,14 @@ class Mcrypt
      * @access private
      */
     private $iv;
+        
+    /**
+     * One of the MCRYPT_RAND, MCRYPT_DEV_RANDOM, MCRYPT_DEV_URANDOM constants
+     * 
+     * @var int
+     * @access private
+     */
+    private $iv_source;
     
     /**
      * Whether to base64 encode and decode the ecrypted value
@@ -67,7 +75,7 @@ class Mcrypt
         $this->key = $key;
         $this->cipher = $cipher;
         $this->mode = $mode;
-        $this->iv = mcrypt_create_iv(mcrypt_get_iv_size($this->cipher, $this->mode), $iv_source);
+        $this->iv_source = $iv_source;
     }
     
     /**
@@ -116,4 +124,32 @@ class Mcrypt
         return $this->base64;
     }
     
+    /**
+     * Generate random byte string of proper size for given algortihm/mode. 
+     */
+    public function generateIv()
+    {
+        $this->iv = mcrypt_create_iv(mcrypt_get_iv_size($this->cipher, $this->mode), $this->iv_source);
+    }
+    
+    /**
+     * Set Initialization Vector, required for most algorithm/mode combinations. 
+     * 
+     * @todo Maybe check for length and throw exception for invalid one?
+     * @param string $iv
+     */
+    public function setIv($iv)
+    {
+        $this->iv = $iv;
+    }
+    
+    /**
+     * Return IV used in this instance.
+     * 
+     * @return string Byte string, remember to use base64_encode before storing it.
+     */
+    public function getIv()
+    {
+        return $this->iv;
+    }
 }
