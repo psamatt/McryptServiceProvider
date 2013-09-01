@@ -21,6 +21,17 @@ $encryptedKey = $app['mcrypt']->encrypt($data);
 print $app['mcrypt']->decrypt($encryptedKey); // prints 'my string'
 ```
 
+If you'd like to use mcrypt in your Twig templates*, you can using either the `mcrypt_encrypt` or the `mcrypt_decrypt` filter:
+
+```
+{{ object.method | mcrypt_encrypt }} // encrypt
+{{ object.method | mcrypt_decrypt }} // decrypt 
+```
+
+\* ensure you define the `McryptServiceProvider` after your Twig Service Provider to utilise the Twig feature
+
+## Mcrypt Documentation
+
 For more information on what values to use for Mcrypt, view the documentation on each specific type:
 
 - [Cipher](http://php.net/manual/en/mcrypt.ciphers.php)

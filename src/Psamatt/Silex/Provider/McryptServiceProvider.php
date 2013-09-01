@@ -12,6 +12,8 @@ namespace Psamatt\Silex\Provider;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
+use Psamatt\Silex\Provider\Twig\Extension\McryptExtension;
+
 class McryptServiceProvider implements ServiceProviderInterface
 {    
     /**
@@ -60,6 +62,14 @@ class McryptServiceProvider implements ServiceProviderInterface
         $mcrypt->setBase64Encoding($this->base64);
         
         $app['mcrypt'] = $mcrypt;
+        
+        // ensure that twig is part of DI Container before adding the twig extension
+        if (isset($app['twig'])) {        
+            $app['mcrypt.twig.extension'] = $app->share($app->extend('twig', function($twig, $app) use ($mcrypt) {
+                $twig->addExtension(new McryptExtension($mcrypt));    
+                return $twig;
+            }));
+        }
     }
 
     /**
