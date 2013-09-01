@@ -1,5 +1,7 @@
 # Mcrypt Service Provider
 
+[![Build Status](https://api.travis-ci.org/psamatt/McryptServiceProvider.png?branch=master)](https://api.travis-ci.org/psamatt/McryptServiceProvider)
+
 A simple wrapper of the PHP [Mcrypt](http://www.php.net/manual/en/book.mcrypt.php) library  for [Silex](http://silex.sensiolabs.org)
 ## Usage
 
