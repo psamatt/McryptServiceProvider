@@ -6,14 +6,14 @@ A simple wrapper of the PHP [Mcrypt](http://www.php.net/manual/en/book.mcrypt.ph
 ## Usage
 
 Register the service provider and specify your unique key.
-
-    $app->register(new Psamatt\Silex\Provider\McryptServiceProvider('unique_key', array(
-            'cipher' => MCRYPT_RIJNDAEL_256, // optional
-            'mode' => MCRYPT_MODE_CBC, // optional
-            'iv_source' => MCRYPT_RAND, // optional
-            'base64' => true|false, // optional. Default is true
-            'auto_generate_iv' => true|false, // option. Default is false
-        )));
+```php
+$app->register(new Psamatt\Silex\Provider\McryptServiceProvider('unique_key', array(
+        'cipher' => MCRYPT_RIJNDAEL_256, // optional
+        'mode' => MCRYPT_MODE_CBC, // optional
+        'iv_source' => MCRYPT_RAND, // optional
+        'base64' => true|false, // optional. Default is true
+        'auto_generate_iv' => true|false, // option. Default is false
+    )));
 
 Please note that you must explicitly generate the IV if you leave `auto_generate_iv` to `false`, you can do this by the following:
 ```php
@@ -22,7 +22,7 @@ $app['mcrypt']->generateIv();
     
 In your Silex application, you can use the Mcrypt provider with the following lines:
 
-```
+```php
 $data = 'my string';
 $encryptedKey = $app['mcrypt']->encrypt($data);
 
@@ -31,7 +31,7 @@ print $app['mcrypt']->decrypt($encryptedKey); // prints 'my string'
 
 If you'd like to use mcrypt in your Twig templates*, you can using either the `mcrypt_encrypt` or the `mcrypt_decrypt` filter:
 
-```
+```php
 {{ object.method | mcrypt_encrypt }} // encrypt
 {{ object.method | mcrypt_decrypt }} // decrypt 
 ```
