@@ -14,7 +14,7 @@ $app->register(new Psamatt\Silex\Provider\McryptServiceProvider('unique_key', ar
         'base64' => true|false, // optional. Default is true
         'auto_generate_iv' => true|false, // option. Default is false
     )));
-
+```
 Please note that you must explicitly generate the IV if you leave `auto_generate_iv` to `false`, you can do this by the following:
 ```php
 $app['mcrypt']->generateIv();
