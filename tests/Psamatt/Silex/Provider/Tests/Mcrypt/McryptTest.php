@@ -64,4 +64,19 @@ class McryptTest extends \PHPUnit_Framework_TestCase
         
         $this->assertEquals($encodedString, $base64Decoded);
     }
+    
+    public function testEncryptionDecryptionUsingIv()
+    {
+        $mcrypt1 = new Mcrypt($this->key, MCRYPT_RIJNDAEL_256, MCRYPT_MODE_CBC);
+        $mcrypt1->generateIv();
+        
+        $mcrypt2 = new Mcrypt($this->key, MCRYPT_RIJNDAEL_256, MCRYPT_MODE_CBC);
+        $mcrypt2->setIv($mcrypt1->getIv());
+        
+        $string = 'String to encode';
+        
+        $encryptedString = $mcrypt1->encrypt($string);
+        
+        $this->assertEquals($string, $mcrypt2->decrypt($encryptedString));
+    }
 }
