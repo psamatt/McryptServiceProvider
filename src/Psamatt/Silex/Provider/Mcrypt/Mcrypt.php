@@ -59,10 +59,10 @@ class Mcrypt
      *
      * @param string $key The key with which the data will be encrypted
      * @param string $cipher One of the MCRYPT_ciphername constants, or the name of the algorithm as string. Default MCRYPT_RIJNDAEL_256
-     * @param string $mode One of the MCRYPT_MODE_modename constants. Default MCRYPT_MODE_ECB
+     * @param string $mode One of the MCRYPT_MODE_modename constants. Default MCRYPT_MODE_CBC
      * @param string $iv_source The source of the IV. Default MCRYPT_RAND
      */
-    public function __construct($key, $cipher = MCRYPT_RIJNDAEL_256, $mode = MCRYPT_MODE_ECB, $iv_source = MCRYPT_RAND)
+    public function __construct($key, $cipher = MCRYPT_RIJNDAEL_256, $mode = MCRYPT_MODE_CBC, $iv_source = MCRYPT_RAND)
     {
         $this->key = $key;
         $this->cipher = $cipher;

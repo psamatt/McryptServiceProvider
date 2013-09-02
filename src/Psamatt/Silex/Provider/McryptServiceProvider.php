@@ -47,7 +47,7 @@ class McryptServiceProvider implements ServiceProviderInterface
         $this->options = array();
         $this->options['key'] = md5($key);
         $this->options['cipher'] = array_key_exists('cipher', $options)? $options['cipher']: MCRYPT_RIJNDAEL_256;
-        $this->options['mode'] = array_key_exists('mode', $options)? $options['mode']: MCRYPT_MODE_ECB;
+        $this->options['mode'] = array_key_exists('mode', $options)? $options['mode']: MCRYPT_MODE_CBC;
         $this->options['iv_source'] = array_key_exists('iv_source', $options)? $options['iv_source']: MCRYPT_RAND;
         
         $this->base64 = array_key_exists('base64', $options)? $options['base64']: true;

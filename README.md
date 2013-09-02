@@ -9,7 +9,7 @@ Register the service provider and specify your unique key.
 
     $app->register(new Psamatt\Silex\Provider\McryptServiceProvider('unique_key', array(
             'cipher' => MCRYPT_RIJNDAEL_256, // optional
-            'mode' => MCRYPT_MODE_ECB, // optional
+            'mode' => MCRYPT_MODE_CBC, // optional
             'iv_source' => MCRYPT_RAND, // optional
             'base64' => true|false, // optional. Default is true
         )));
