@@ -2,7 +2,7 @@
     "name": "psamatt/mcrypt-service-provider",
     "description": "A simple wrapper of the mcrypt library for use within Silex",
     "keywords": ["silex", "mcrypt"],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "MIT",
     "authors": [
         {
