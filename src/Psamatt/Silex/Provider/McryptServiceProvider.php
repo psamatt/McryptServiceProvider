@@ -31,6 +31,14 @@ class McryptServiceProvider implements ServiceProviderInterface
      * @var boolean
      */
     private $base64;
+    
+    /**
+     * Whether or not to generate the Initialization Vector
+     *
+     * @access private
+     * @var boolean
+     */
+    private $autoGenerateIV;
 
     /**
      * Constructor
@@ -51,6 +59,7 @@ class McryptServiceProvider implements ServiceProviderInterface
         $this->options['iv_source'] = array_key_exists('iv_source', $options)? $options['iv_source']: MCRYPT_RAND;
         
         $this->base64 = array_key_exists('base64', $options)? $options['base64']: true;
+        $this->autoGenerateIV = array_key_exists('auto_generate_iv', $options)? $options['auto_generate_iv']: false;
     }
 
     /**
@@ -62,6 +71,10 @@ class McryptServiceProvider implements ServiceProviderInterface
         $mcrypt->setBase64Encoding($this->base64);
         
         $app['mcrypt'] = $mcrypt;
+        
+        if ($this->autoGenerateIV === true) {
+            $app['mcrypt']->generateIv();
+        }
         
         // ensure that twig is part of DI Container before adding the twig extension
         if (isset($app['twig'])) {        

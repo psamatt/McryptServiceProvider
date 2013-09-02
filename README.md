@@ -12,9 +12,15 @@ Register the service provider and specify your unique key.
             'mode' => MCRYPT_MODE_CBC, // optional
             'iv_source' => MCRYPT_RAND, // optional
             'base64' => true|false, // optional. Default is true
+            'auto_generate_iv' => true|false, // option. Default is false
         )));
+
+Please note that you must explicitly generate the IV if you leave `auto_generate_iv` to `false`, you can do this by the following:
+```php
+$app['mcrypt']->generateIv();
+```
     
-Then in your Silex application, you can use the Mcrypt provider with the following lines:
+In your Silex application, you can use the Mcrypt provider with the following lines:
 
 ```
 $data = 'my string';
@@ -31,6 +37,9 @@ If you'd like to use mcrypt in your Twig templates*, you can using either the `m
 ```
 
 \* ensure you define the `McryptServiceProvider` after your Twig Service Provider to utilise the Twig feature
+
+### Other useful information
+If you require to decrypt a mcrypt encrypted string and are not using MCRYPT_MODE_ECB *(recommended)*, you must initially get the IV before you've encrypted your string using `$app['mcrypt']->getIv()` and store this safely, then when you are ready to decrypt, you must set the same IV using `$app['mcrypt']->setIv($my_iv)`, view the [unit test](http://github.com/psamatt/McryptServiceProvider/blob/master/tests/Psamatt/Silex/Provider/Tests/Mcrypt/McryptTest.php#L68) for further clarification.
 
 ## Mcrypt Documentation
 

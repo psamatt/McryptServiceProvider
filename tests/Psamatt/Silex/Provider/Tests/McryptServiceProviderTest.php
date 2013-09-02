@@ -68,4 +68,28 @@ class McryptServiceProviderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($app['mcrypt']->isBase64Encoding());
     }
+    
+    public function testSettingGenerateIVAsOptionToDefault()
+    {
+        $app = new Application();
+        $app->register(new McryptServiceProvider($this->key));
+
+        $this->assertEmpty($app['mcrypt']->getIv());
+    }
+    
+    public function testSettingGenerateIVAsOptionToFalse()
+    {
+        $app = new Application();
+        $app->register(new McryptServiceProvider($this->key, array('auto_generate_iv' => false)));
+
+        $this->assertEmpty($app['mcrypt']->getIv());
+    }
+    
+    public function testSettingGenerateIVAsOptionToTrue()
+    {
+        $app = new Application();
+        $app->register(new McryptServiceProvider($this->key, array('auto_generate_iv' => true)));
+
+        $this->assertNotEmpty($app['mcrypt']->getIv());
+    }
 }

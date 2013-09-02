@@ -43,6 +43,7 @@ class McryptTest extends \PHPUnit_Framework_TestCase
     public function testCheckEncryptedDecryptEqualsNormalString()
     {
         $mcrypt = new Mcrypt($this->key);
+        $mcrypt->generateIv();
         
         $string = 'String to encode';
         
@@ -55,6 +56,7 @@ class McryptTest extends \PHPUnit_Framework_TestCase
     {
         $mcrypt = new Mcrypt($this->key);
         $mcrypt->setBase64Encoding(true);
+        $mcrypt->generateIv();
         
         $base64Decoded = base64_decode($mcrypt->encrypt('String to encode'));
         

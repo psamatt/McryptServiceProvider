@@ -44,7 +44,7 @@ class Mcrypt
      * @var string
      * @access private
      */
-    private $iv;
+    private $iv = null;
         
     /**
      * One of the MCRYPT_RAND, MCRYPT_DEV_RANDOM, MCRYPT_DEV_URANDOM constants
